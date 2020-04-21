@@ -19,18 +19,7 @@ $media_bimestre2 = (($P_Oficial2 * $Bimestre2) + ($P_Parcial2 * $Bimestre2)) /($
 
 $media_final = (($media_bimestre1 * $Bimestre1) + ($media_bimestre2 * $Bimestre2)) / ($Bimestre1 + $Bimestre2);
 
-/*
-echo "Prova Oficial01 :".$P_Oficial1 . "<br>";
-echo "Prova Oficial02 :".$P_Oficial2 . "<br>";
-echo "Prova Parcial 1 :".$P_Parcial1 . "<br>";
-echo "Prova Parcial 1 :".$P_Parcial2 . "<br>"; 
 
-echo "<br>";
-
-echo "Valor do bimestre1:".$media_bimestre1. "<br>";
-echo "Valor do bimestre2:".$media_bimestre2. "<br>";
-echo "Valor final:".$media_final."<br>";
-*/
 
 if($media_final > 6.5){
     $status = "Aprovado";
@@ -50,6 +39,8 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 </head>
 <body>
 
@@ -74,8 +65,8 @@ else {
                 
                 </tbody>
             </table>
-            <canvas id="grafico" ></canvas>
-            <script>
+            <canvas class="mx-auto my-2" id="grafico" ></canvas>
+            <script type="text/javascript" >
                 var ProvaOF1 = "<?php echo $P_Oficial1; ?>" //cor A
                 var ProvaPar1 = "<?php echo $P_Parcial1; ?>" // cor b
                 var MediaBimestre1 = "<?php echo $media_bimestre1; ?>" //cor c
@@ -85,65 +76,60 @@ else {
                 var MediaBimestre2 = "<?php echo $media_bimestre2; ?>" // cor c
 
                 var mediaFinal = "<?php echo $media_final; ?>" 
-
-
-                function criarEixos(canvas, margem) {
-                    var c=document.getElementById(canvas);
-                    var ctx=c.getContext("2d");
-                    var rightX = c.width - margem;
-                    // y
-                    ctx.moveTo(margem, margem);
-                    ctx.lineTo(margem, rightX);
-                    // setas do y
-                    ctx.moveTo(margem, margem);
-                    ctx.lineTo(margem + 5, margem + 5);
-                    ctx.moveTo(margem, margem);
-                    ctx.lineTo(margem - 5, margem + 5);
-                    // x
-                    ctx.moveTo(margem, rightX);
-                    ctx.lineTo(rightX, rightX);
-                    // setas x
-                    ctx.moveTo(rightX, rightX);
-                    ctx.lineTo(rightX - 5, rightX + 5);
-                    ctx.moveTo(rightX, rightX);
-                    ctx.lineTo(rightX - 5, rightX - 5);
-                    // Define style and stroke lines.
-                    ctx.strokeStyle = "#000";
-                    
-                    ctx.stroke();
-                    }
-                            
-                    function criarBarra(canvas,xPos, yPos, largura, altura, cor){
-                        var c=document.getElementById(canvas);
-                        var ctx=c.getContext("2d");
-                        ctx.fillStyle = cor;  
-                        ctx.fillRect(xPos, yPos, largura, altura);
-                    }
-                    
-                    function criarGrafico(canvas, margem, barras, cor){
-                        var largura=document.getElementById(canvas).width;
-                        var altura = document.getElementById(canvas).height-(margem*2)-5;
-                        var qtd = barras.length;
-                        var barra = (largura/(qtd*1.5))-5;
-                        var entre = (largura-(barra*qtd))/(qtd+3);
-                        var total = 0;
-                        
-                        for (i = 0; i < qtd; i++) {		
-                            if(total<barras[i]){
-                                total=barras[i];
-                            }
-                        }
-                        
-                        for (i = 0; i < qtd; i++) {		
-                            criarBarra(canvas,((barra+entre)*i)+(margem+entre),largura-margem-altura*(barras[i]/total),barra,altura*(barras[i]/total),cor);
-                        }
-                        
-                        criarEixos(canvas, margem);
-                    }
-                    
-                    var dados = new Array(10, 20, 30);
-                    criarGrafico("grafico",10, dados, "#696");
+                var cor
                 
+                if (mediaFinal >=6)
+                {
+                    cor = 'rgba(51,255,51,0.2)';
+                }
+                else if(mediaFinal == 5){
+                     cor = 'rgba(255,0,0,0.2)'
+                }
+                else{
+                     cor = 'rgba(204,255,0,0.2)'
+                }
+                
+                var ctx = document.getElementById('grafico').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Prova Oficial 1', 'Prova Parcial 1', 'Media do Bimestre', 'Prova Oficial 2', 'Prova Parcial 2','Media do Bimestre','Media final do Semestre'],
+                        datasets: [{
+                            label: '# Provas e medias',
+                            data: [<?php echo $P_Oficial1; ?>, <?php echo $P_Parcial1; ?>, <?php echo $media_bimestre1; ?>,<?php echo $P_Oficial2; ?>,<?php echo $P_Parcial2; ?>,<?php echo $media_bimestre2; ?>,<?php echo $media_final; ?>],
+                            backgroundColor: [
+                                'rgba(102,0,255,0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(0,0,0,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(0,0,0,0.2)',
+                                cor
+                            ],
+                            borderColor: [
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)',
+                                'rgba(102,0,255,0.2)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            
+
             </script>
 </body>
 </html>
