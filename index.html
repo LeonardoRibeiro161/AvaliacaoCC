@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Prova Oficial I</title>
+</head>
+<body>
+<form action="processar.php" method="POST">
+    <div class="form-group">
+        <label for="InputNome">Nome do aluno </label>
+        <input type="text" class="form-control" id="Nome"  name="Nome" placeholder="Nome completo" min="1" max="10">
+  </div>
+
+  <div class="form-group">
+    <label for="InputProvaOF1">Valor da Prova Oficial 1 </label>
+    <input type="text" class="form-control" id="ProvaOF1"  name="ProvaOF1" placeholder="Prova Oficial 1" min="1" max="10">
+  </div>
+
+  <div class="form-group">
+    <label for="InputProvaOF2">Valor da Prova Oficial 2 </label>
+    <input type="text" class="form-control" id="ProvaOF2"   name="ProvaOF2" placeholder="Prova Oficial 2" min="1" max="10">
+  </div>
+
+  <div class="form-group">
+    <label for="InputProvaParcial1">Valor da Prova Parcial 1 </label>
+    <input type="text" class="form-control" id="ProvaPar1" name="ProvaPar1" placeholder="Prova Parcial 1" min="1" max="10">
+  </div>
+
+  <div class="form-group">
+    <label for="InputProvaOParcial02">Valor da Prova Parcial 2 </label>
+    <input type="text" class="form-control" id="ProvaParc2" name="ProvaPar2" placeholder="Prova Parcial 2" min="1" max="10">
+  </div>
+
+  <center><button type="submit" class="btn btn-primary">Calcular</button></center>
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+Implemente os códigos necessários para atender a situação problema abaixo: 
+
+01. Você deverá criar um formulário em HTML que permita a entrada dos seguintes dados abaixo:
+
+    O nome completo do aluno
+    O valor da Prova Oficial 1 - nota mínima 0 / nota máxima 10 
+    O valor da Prova Oficial 2 - nota mínima 0 / nota máxima 10
+    O valor da Prova Parcial 1 - nota mínima 0 / nota máxima 10
+    O valor da Prova Parcial 2 - nota mínima 0 / nota máxima 10
+    O formulário não deverá permitir um valor diferente do valor mínimo/máximo.
+
+02. O valor/peso de cada prova no semestre e média de aprovação: 
+
+    A Prova Oficial 1 tem peso 4
+    Aprova Oficial 2 tem peso 6
+    Aprova Parcial 1 tem peso 4
+    Aprova Parcial 2 tem peso 6 
+    A média minima para aprovação é 6.5 pontos
+    A média para processo de recuperação é 5 pontos
+    A média para reprovação é um valor abaixo de 5 pontos 
+
+03. Cálculos c/o dados de entrada:
+
+    Calcular a média do aluno no 01 bimestre - Prova Oficial 1 + Prova Parcial 1 
+    Calcular a média do aluno no 02 bimestre - Prova Oficial 2 + Prova Parcial 2 
+    Calcular a média final do aluno no semestre
+    Calcular o status final do aluno: Aprovado, Reprovado, Recuperação
+
+04. Dados de Saída 01 - Corpo da Página
+
+    A média do aluno no 01 bimestre
+    A média do aluno no 02 bimestre
+    A média final do aluno no semestre
+    No do aluno e o status final do aluno: Aprovado, Reprovado, Recuperação
+
+05. Dados de Saída 02 - Gráfico de Coluna
+
+    Coluna 1 - Prova Oficial 1 - Cor A
+    Coluna 2 - Prova Parcial 1 - Cor B
+    Coluna 3 - Média do Bimestre - Cor C
+    Coluna 4 - Prova Oficial 2 - Cor A
+    Coluna 5  - Prova Parcial 2 - Cor B 
+    Coluna 6 - Média do Bimestre - Cor C
+    Coluna 7 - Média final do Semestre - Cor: Verde(Aprovado), Vermelho(Reprovado), Recuperação(Amarelo).
